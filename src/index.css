@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Base Styles */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-slate-950 text-white antialiased;
+  }
+  
+  ::selection {
+    @apply bg-blue-500/30 text-white;
+  }
+}
+
+/* Custom Animations */
+@layer utilities {
+  /* Animated Gradient Text */
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* Slow Spin for Background Elements */
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Pulse Animation for Live Indicators */
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Fade In Animation */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Slide In Animation */
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  /* Glass Morphism Effect */
+  .glass {
+    @apply bg-gray-900/40 backdrop-blur-xl border border-gray-800/50;
+  }
+  
+  /* Hover Glow Effect */
+  .hover-glow {
+    @apply transition-shadow duration-300;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-950;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-700 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600;
+  }
+  
+  /* Shimmer Effect for Loading States */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+/* Component Specific Styles */
+@layer components {
+  /* Gradient Button Base */
+  .btn-gradient {
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 
+           hover:from-blue-500 hover:via-purple-500 hover:to-pink-500
+           text-white font-semibold rounded-full transition-all duration-300 
+           transform hover:scale-105 shadow-lg shadow-blue-500/25;
+  }
+  
+  /* Card Hover Effect */
+  .card-hover {
+    @apply transition-all duration-500 hover:transform hover:-translate-y-2 
+           hover:shadow-2xl hover:border-gray-600;
+  }
+  
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Gradient Border */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(to right, rgba(59, 130, 246, 0.5), rgba(147, 51, 234, 0.5));
+    padding: 1px;
+    border-radius: 1rem;
+  }
+  
+  .gradient-border > * {
+    @apply bg-slate-950 rounded-[calc(1rem-1px)];
+  }
+}
+
+/* Responsive Typography */
+@layer utilities {
+  .text-responsive-hero {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
+  }
+  
+  .text-responsive-section {
+    @apply text-3xl sm:text-4xl md:text-5xl;
+  }
+}
+
+/* Focus States for Accessibility */
+@layer utilities {
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-950;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
